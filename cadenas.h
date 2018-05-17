@@ -284,6 +284,7 @@ void strTrunc(char *cOrigen,int nroIndice)
 // PARAMETROS:
 // cadena
 // nueva cadena
+
 // DEVUELVE :
 // La posición inicial de la subcadena
 // Un -1 si no se encuentra.
@@ -291,17 +292,78 @@ void strTrunc(char *cOrigen,int nroIndice)
 //-----------------------------------------------------------------------------
  char strSub(char *cadena, char *subCadena)
 {
-     int x, i;
-     int largoSub = strLen(subCadena);
-     int largoCadena = strLen(cadena);
-
-     for( i = 0; i < largoCadena; i++ ){
-        if(cadena[i] == '\0'){
-            return -1;
-        }else{
-
+    int posi=-1;
+    int ban=0;
+    int i=0;
+    int conteo=0;
+    int pm=strLen(cadena);
+    while (conteo<=pm)
+    {
+        if (cadena[conteo]==subCadena[i])
+        {
+            if (ban==0)
+            {
+                ban=1;
+                conteo++;
+                i++;
+                if(posi==-1)
+                {
+                    posi=conteo -1;
+                    if (subCadena[i]=='\0')
+                    {
+                        conteo=pm +1;
+                    }
+                }
+                else
+                {
+                    if (subCadena[i]=='\0')
+                    {
+                        conteo=pm +1;
+                    }
+                }
+            }
+            else
+            {
+                conteo++;
+                i++;
+                if (subCadena[i]=='\0')
+                {
+                    conteo=pm +1;
+                }
+            }
         }
-     }
+        else
+        {
+            conteo++;
+            ban=0;
+            i=0;
+            posi=-1;
+        }
+    }
+    return posi;
+}
+//*****************************************************************************
+// DEFINICION DE LAS FUNCIONES
+//=============================================================================
+// FUNCION : strToUpper
+// ACCION : convierte una cadena a mayuscula
+// PARAMETROS:
+// cadena
+// DEVUELVE :
+// nada
+// tipo --> void
+//-----------------------------------------------------------------------------
+void strToUpper(char *cOrigen)
+{
+        int i = 0;
+    while (cOrigen[i]!='\0')
+    {
+        if(cOrigen[i]>='a' && cOrigen[i]<= 'z')
+        {
+            cOrigen[i] -= 32;
+        }
+        i++;
+    }
 }
 //*****************************************************************************
 // DEFINICION DE LAS FUNCIONES
@@ -316,20 +378,15 @@ void strTrunc(char *cOrigen,int nroIndice)
 //-----------------------------------------------------------------------------
 void strToLower(char *cOrigen)
 {
-        int i = 0;
+    int i = 0;
     while (cOrigen[i]!='\0')
     {
         if(cOrigen[i]>='A' && cOrigen[i]<= 'Z')
         {
             cOrigen[i] += 32;
         }
-        else
-        {
-            cout << "el contenido del vector está fuera de los parametros de la función :( "<< endl;
-        }
         i++;
     }
-
 }
 
 // DEFINICION DE LAS FUNCIONES
@@ -344,10 +401,26 @@ void strToLower(char *cOrigen)
 // Nota: los elementos de la cadena deben ser caracteres cuyo código ASCII se
 //encuentre en el rango 48..57.
 //-----------------------------------------------------------------------------
-/*int strToInt(char *cadena)
-{
 
+int strToInt(char *cadena)
+{
+    int i = 0;
+    int largoCadena = strLen(cadena);
+    int numero[largoCadena];
+    while (cadena[i]!='\0')
+    {
+        //if(cadena[i]>='0' && cadena[i]<= '9')
+        //{
+            numero[i]= cadena[i] - '0';
+            //probar debugger para ver como almacena.
+        //}
+        i++;
+    }
+
+
+    return *numero;
 }
+
 // *****************************************************************************
 // DEFINICION DE LAS FUNCIONES
 //=============================================================================
@@ -367,5 +440,5 @@ void intToStr(int nroConvertir, char *cOrigen)
 
 
 }
-*/
+
 #endif // CADENAS_H_INCLUDED

@@ -188,13 +188,47 @@ void mostrarMenu()
         case 10:
             {
                 // buscar comienzo subcadena
-                char cadenaOrigen[50];
-                char subCadena[50];
-                cout << "Ingrese una cadena: ";
-                sys::getline(cadenaOrigen,50);
-                cout << "Ingrese la subcadena: ";
-                sys::getline(subCadena,50);
-                cout << strSub(cadenaOrigen, subCadena) << endl;
+                char cadena[9999];
+                char subcad[999];
+                cout<<"ingresar primer cadena: "<<endl;
+                sys::getline(cadena,9999);
+                cout<<"ingresar subcadena a encontrar: "<<endl;
+                sys::getline(subcad,999);
+                int t=strSub(cadena, subcad);
+                cout << t << endl;
+            }break;
+        case 11:
+            {
+                // strToUpper
+                char cadena[9999];
+                cout << "Ingrese la cadena en minuscula: " << endl;
+                sys::getline(cadena, 9999);
+                cout << "Cadena pasada a mayuscula: ";
+                strToUpper(cadena);
+                cout << cadena << endl;
+            }
+            break;
+        case 12:
+            {
+                // strToLower
+                char cadena[9999];
+                cout << "Ingrese la cadena en mayuscula: " << endl;
+                sys::getline(cadena, 9999);
+                cout << "Cadena pasada a minuscula: ";
+                strToLower(cadena);
+                cout << cadena << endl;
+            }
+            break;
+        case 13:
+            {
+                // strToInt
+                char cadena[9999];
+                cout << "Ingrese la cadena numerica: " << endl;
+                sys::getline(cadena, 9999);
+                cout << "Cadena pasada a entero: ";
+                int resultado = strToInt(cadena);
+                cout << resultado << endl;
+
             }
             break;
         case 15:
